@@ -1,6 +1,8 @@
 <div class="todos">
-    <div class="todo">
-        <div class="id">0</div>
+    <div class="todo" *ngFor="let todo of todos; let i = index;">
+        <div class="id">{{ i+1 }}</div>
+        <div class="content">{{ todo.content }}</div>
+        <div class="priority">{{ todo.priority }}</div>
         <button class="delete">X</button>
     </div>
 </div>
