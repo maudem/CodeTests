@@ -1,8 +1,30 @@
+<form class='row' (submit)="addTodo()">
+    <input
+        name="newTodo"
+        type="text"
+        class="todoItem col-8"
+        [(ngModel)]="newTodo"
+        placeholder="Jot down a list item"
+
+    />
+    <button type="submit" value="Add todo" class="submit col-2">Add</button>
+</form>
 <div class="todos">
     <div *ngFor="let todo of todos; let i = index;" class="row todo {{ (todo.completed ? 'done' : '') }}">
         <div class="col-1 id">{{ i+1 }}</div>
-        <div (click)="toggleDone(i)" class="col-8 content">{{ todo.content }}</div>
-        <div class="col-1 priority" (click)="setPriority(todo)">{{ todo.priority }}</div>
-        <button class="col-1 delete" (click)="deleteTodo(i)">X</button>
+        <div (click)="toggleDone(i)" class="col-8 content">
+            {{ todo.content }}
+            <!-- <span >
+                <input
+                    name="dateCompleted"
+                    type="date"
+                />
+                <button class="btn-small" (click)="">X</button>
+            </span> -->
+        </div>
+        <div class="col-1 priority" (click)="setPriority(todo)">
+            {{ todo.priority }}
+        </div>
+        <button class="delete btn-danger col-2" (click)="deleteTodo(i)">Remove</button>
     </div>
 </div>

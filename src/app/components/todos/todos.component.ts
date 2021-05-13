@@ -8,36 +8,38 @@ import { Todo } from './../models/Todo';
 export class TodosComponent implements OnInit {
 
   todos:Todo[];
+  newTodo:string = '';
 
   constructor() { }
 
   ngOnInit(): void {
-    this.todos = [
-      {
-        content: 'Make bed',
-        priority: 'Low',
-        completed: false
-      },
-      {
-        content: 'Meditate',
-        priority: 'High',
-        completed: false
-      },
-    ]
+    //add 
+    this.todos = []
 
   }
 
   toggleDone (id: number) {
     this.todos.map((todo, i) => {
+      // ask do you want to add date with input
+
+      // this.addFinishDate(todo);
       if (i == id) todo.completed = !todo.completed;
-      this.addFinishDate();
+      
       return todo;
     })
   }
 
   addTodo () {
-    console.log("added, yay!");
 
+    if(this.newTodo) {
+       this.todos.push({
+        content: this.newTodo,
+        priority: 'Low',
+        completed: false,
+        dateCompleted: ''
+      });
+    }
+    this.newTodo = '';
   }
 
   deleteTodo (id: number) {
@@ -64,12 +66,13 @@ export class TodosComponent implements OnInit {
 
   }
 
-  filterTodos () {
+  // filterTodos () {
 
-  }
+  // }
 
-  addFinishDate() {
-
-  }
+  // addFinishDate(todo) {
+  //   //figure out how you want this to work
+  //   // todo.dateCompleted
+  // }
 
 }
