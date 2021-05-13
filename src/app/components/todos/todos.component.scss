@@ -1,4 +1,12 @@
 .todo {
     display: flex;
     align-items: center;
+
+    // &.content {
+    //     cursor: 
+    // }
+
+    &.done {
+        text-decoration: line-through;
+    }
 }

@@ -1,8 +1,8 @@
 <div class="todos">
     <div *ngFor="let todo of todos; let i = index;" class="row todo {{ (todo.completed ? 'done' : '') }}">
         <div class="col-1 id">{{ i+1 }}</div>
-        <div class="col-8 content">{{ todo.content }}</div>
-        <div class="col-1 priority">{{ todo.priority }}</div>
-        <button class="col-1 delete">X</button>
+        <div (click)="toggleDone(i)" class="col-8 content">{{ todo.content }}</div>
+        <div class="col-1 priority" (click)="setPriority(todo)">{{ todo.priority }}</div>
+        <button class="col-1 delete" (click)="deleteTodo(i)">X</button>
     </div>
 </div>
