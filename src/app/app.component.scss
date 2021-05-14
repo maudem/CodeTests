@@ -1,3 +1,11 @@
+body {
+    align-content: center;
+}
+
+header {
+    text-align: center;
+}
+
 .hide {
     display:none;
 }
@@ -7,4 +15,10 @@
 }
 .pointer{
     cursor: pointer;
+}
+
+.paper {
+    margin: 50px auto;
+    max-width: 70%;
+    padding: 0 60px;
 }
