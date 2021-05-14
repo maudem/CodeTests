@@ -5,16 +5,22 @@
         class="todoItem col-8"
         [(ngModel)]="newTodo"
         placeholder="Jot down a list item"
-
     />
+
     <button type="submit" value="Add todo" class="submit col-2">Add</button>
 </form>
 
 <div class="todos">
     <ol>
         <li *ngFor="let todo of todos; let i = index;" class="row todo {{ (todo.completed ? 'done' : '') }}">
+            <p>{{ i+1}}.</p>
+
             <div class="col-7">
-                <p (click)="todoStatus(todo, i)" popover-top="Click to complete task" class="content pointer col-10">{{ todo.content }}</p>
+                <p (click)="todoStatus(todo, i)" popover-top="Click to complete task" class="content pointer col-10">
+                    {{ todo.content }}
+
+                    <span *ngIf="todo.completed && todo.dateCompleted">(Done on {{ todo.dateCompleted }})</span>
+                </p>
                 
                 <form *ngIf="todo.showDate" class="row" (submit)="addFinishDate(todo)">
                     <input
@@ -23,6 +29,7 @@
                         class="newDoneDate col-6"
                         [(ngModel)]="todo.dateCompleted"
                     />
+
                     <button type="submit" class="btn-small col-2">Done</button>
                 </form>
             </div>

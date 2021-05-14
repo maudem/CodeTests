@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from './../models/Todo';
-import { Observable } from 'rxjs';
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
@@ -33,14 +32,6 @@ export class TodosComponent implements OnInit {
     ]
 
   }
-
-  // toggleDone (id: number) {
-  //   this.todos.map((todo, i) => {
-  //     if (i == id) todo.completed = !todo.completed;
-  //     return todo;
-  //   })
-    
-  // }
 
   addTodo () {
 

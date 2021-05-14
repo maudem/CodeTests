@@ -1,8 +1,13 @@
 .todo {
     display: flex;
-    align-items: center;
+    align-items: baseline;
 
     &.done {
         text-decoration: line-through;
+        color: gray;
     }
 }
+
+button.delete {
+        align-self: baseline !important;
+    }
