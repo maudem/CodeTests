@@ -1,4 +1,4 @@
-<form class='row' (submit)="addTodo()">
+<form class="row" (submit)="addTodo()">
     <input
         name="newTodo"
         type="text"
@@ -9,22 +9,29 @@
     />
     <button type="submit" value="Add todo" class="submit col-2">Add</button>
 </form>
+
 <div class="todos">
-    <div *ngFor="let todo of todos; let i = index;" class="row todo {{ (todo.completed ? 'done' : '') }}">
-        <div class="col-1 id">{{ i+1 }}</div>
-        <div (click)="toggleDone(i)" class="col-8 content">
-            {{ todo.content }}
-            <!-- <span >
-                <input
-                    name="dateCompleted"
-                    type="date"
-                />
-                <button class="btn-small" (click)="">X</button>
-            </span> -->
-        </div>
-        <div class="col-1 priority" (click)="setPriority(todo)">
-            {{ todo.priority }}
-        </div>
-        <button class="delete btn-danger col-2" (click)="deleteTodo(i)">Remove</button>
-    </div>
+    <ol>
+        <li *ngFor="let todo of todos; let i = index;" class="row todo {{ (todo.completed ? 'done' : '') }}">
+            <div class="col-7">
+                <p (click)="todoStatus(todo, i)" popover-top="Click to complete task" class="content pointer col-10">{{ todo.content }}</p>
+                
+                <form *ngIf="todo.showDate" class="row" (submit)="addFinishDate(todo)">
+                    <input
+                        name="newDoneDate"
+                        type="date"
+                        class="newDoneDate col-6"
+                        [(ngModel)]="todo.dateCompleted"
+                    />
+                    <button type="submit" class="btn-small col-2">Done</button>
+                </form>
+            </div>
+
+            <div class="col-2 priority pointer" (click)="setPriority(todo)">
+                {{ todo.priority }}
+            </div>
+
+            <button class="delete btn-danger col-2" (click)="deleteTodo(i)">Remove</button>
+        </li>
+    </ol>
 </div>

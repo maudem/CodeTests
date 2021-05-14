@@ -3,4 +3,5 @@ export class Todo {
     priority:string;
     completed:boolean;
     dateCompleted: string;
+    showDate: boolean = false;
 }

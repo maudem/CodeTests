@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from './../models/Todo';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
@@ -9,25 +10,37 @@ export class TodosComponent implements OnInit {
 
   todos:Todo[];
   newTodo:string = '';
+  newDoneDate: string = '';
 
   constructor() { }
 
   ngOnInit(): void {
-    //add 
-    this.todos = []
+    this.todos = [
+      {
+        content: 'Make bed',
+        priority: 'Low',
+        completed: false,
+        dateCompleted: '',
+        showDate: false
+      },
+      {
+        content: 'Meditate',
+        priority: 'High',
+        completed: false,
+        dateCompleted: '',
+        showDate: false
+      },
+    ]
 
   }
 
-  toggleDone (id: number) {
-    this.todos.map((todo, i) => {
-      // ask do you want to add date with input
-
-      // this.addFinishDate(todo);
-      if (i == id) todo.completed = !todo.completed;
-      
-      return todo;
-    })
-  }
+  // toggleDone (id: number) {
+  //   this.todos.map((todo, i) => {
+  //     if (i == id) todo.completed = !todo.completed;
+  //     return todo;
+  //   })
+    
+  // }
 
   addTodo () {
 
@@ -36,7 +49,8 @@ export class TodosComponent implements OnInit {
         content: this.newTodo,
         priority: 'Low',
         completed: false,
-        dateCompleted: ''
+        dateCompleted: '',
+        showDate: false
       });
     }
     this.newTodo = '';
@@ -66,13 +80,18 @@ export class TodosComponent implements OnInit {
 
   }
 
-  // filterTodos () {
+  addFinishDate(todo:any) {
+    todo.completed = true
+    todo.showDate = false;
+  }
 
-  // }
-
-  // addFinishDate(todo) {
-  //   //figure out how you want this to work
-  //   // todo.dateCompleted
-  // }
+  todoStatus(todo:any, id:number) {
+    if(todo.completed) {
+      todo.completed = false;
+    } else {
+      todo.showDate = true;
+      this.addFinishDate;
+    }
+  }
 
 }
